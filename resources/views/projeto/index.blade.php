@@ -17,6 +17,7 @@
 				<td>{{$v->id}}</td>
 				<td>{{$v->nome}}</td>
 				<td>{{$v->filiacao}}</td>
+				
 				<!--Link para as descriçoes de cada vereador-->
 				<td>
 					<a href="{!! route('group.show', $v->id) !!}">
@@ -41,7 +42,7 @@
 		</tbody>
 	</table>
 
-	<a class="btn btn-default" href="{!!route('group.create')!!}">
+	<a class="btn btn-default" href="{!! route('group.create') !!}">
 		<span class="glyphicon glyphicon-plus"></span> 
 		vereador
 	</a>  <!--Link para adicionar novo vereador-->

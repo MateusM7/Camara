@@ -3,9 +3,9 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-
+use Intervention\Image\ImageManager;
 use App\Http\Requests;
-
+use Image;
 use App\Vereador;
 use App\Projeto;
 use App\Ver_Proj;
@@ -20,6 +20,14 @@ class CamaraController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+  
+    public function cronometro()
+    {
+        $vereadores = Vereador::all(); //Seleciona todods os vereadores
+        return view('projeto.cronometro')->with('vereadores', $vereadores);
+
+    }
+
     public function index()
     {
         $vereadores = Vereador::all(); //Seleciona todods os vereadores
@@ -34,8 +42,9 @@ class CamaraController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function create()
-    {
-        return view('projeto.formCriar');
+    {    
+       
+        return view('projeto.formCriar')->with('p',"default.jpg");
     }
 
     /**
@@ -50,13 +59,27 @@ class CamaraController extends Controller
         $novoVereador = new Vereador($dados);
         $novoVereador->save();
 
+        $avatar = $request->input('avatar');
+        $idd =$novoVereador->id;
+         $novoVereador = Vereador::find($idd);
+           if($request->hasFile('avatar')){
+            $avatar = $request->file('avatar');
+            $filename=time() . '.' . $avatar->getClientOriginalExtension();
+            Image::make($avatar)->resize(300, 300)->save( public_path('/img/' . $filename));
+            $novoVereador->avatar = $filename;
+            $novoVereador->save();
+        }    
+        
+      
+
+           
         return redirect()->action('CamaraController@index');
 
     }
+    
 
     //Metodo para ocronometro de cada vereador
     public function crono($id) {
-
         $dados = Vereador::find($id);
         return view('projeto.crono', ['p' => $dados]);
     }
@@ -79,6 +102,25 @@ class CamaraController extends Controller
 
         
     }
+
+    public function uploand(Request $request,$id)
+    {
+         $projs = DB::select('select distinct p.id, p.nome from vereador v, projetos p, ver_proj vp where
+            p.id = vp.id_proj and ? = vp.id_ver and vp.id_ver = v.id', [$id]);
+         $avatar = $request->input('avatar');
+         $vereador = Vereador::find($id);
+
+        if($request->hasFile('avatar')){
+            $avatar = $request->file('avatar');
+            $filename=time() . '.' . $avatar->getClientOriginalExtension();
+            Image::make($avatar)->resize(300, 300)->save( public_path('/img/' . $filename));
+            $vereador ->avatar = $filename;
+            $vereador->save();
+        }    
+
+            return  view('projeto.descricao' , ['v' => $vereador, 'projs' => $projs]);  
+
+}
 
     /**
      * Show the form for editing the specified resource.

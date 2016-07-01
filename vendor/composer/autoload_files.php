@@ -7,12 +7,13 @@ $baseDir = dirname($vendorDir);
 
 return array(
     $vendorDir . '/symfony/polyfill-mbstring/bootstrap.php',
-    $vendorDir . '/symfony/var-dumper/Resources/functions/dump.php',
     $vendorDir . '/hamcrest/hamcrest-php/hamcrest/Hamcrest.php',
+    $vendorDir . '/symfony/var-dumper/Resources/functions/dump.php',
     $vendorDir . '/symfony/polyfill-php56/bootstrap.php',
     $vendorDir . '/swiftmailer/swiftmailer/lib/swift_required.php',
     $vendorDir . '/psy/psysh/src/Psy/functions.php',
     $vendorDir . '/paragonie/random_compat/lib/random.php',
+    $vendorDir . '/guzzlehttp/psr7/src/functions_include.php',
     $vendorDir . '/laravel/framework/src/Illuminate/Foundation/helpers.php',
     $vendorDir . '/laravel/framework/src/Illuminate/Support/helpers.php',
 );

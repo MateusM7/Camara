@@ -96,7 +96,7 @@ function cronometro(aux){
         }
     }
 
-    if(segundo == 55 && minuto == 1){
+    if(segundo == 56 && minuto == 1){
  
           $("#jquery_jplayer_1").jPlayer({ready: function(event) {
                $(this).jPlayer("setMedia", {
