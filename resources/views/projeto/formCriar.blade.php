@@ -26,17 +26,16 @@
 			</div>
 			<div class="form-group">
 				<label for="id_email">Email</label>
-				<input type="email" class="form-control" id="id_email" name="email" placeholder="Digite o email" ng-model="email" ng-required="true">
+				<input type="text" class="form-control" id="id_email" name="email" placeholder="Digite o email" ng-model="email" ng-required="true">
 			</div>
-
 			<div ng-show="criarForm.email.$invalid && criarForm.email.$dirty" class="alert alert-danger">
 				<strong>Aviso!</strong> Por favor, preencha o campo email
 			</div>
+
 			<div class="form-group">
 				<label for="id_fone">Fone</label>
-				<input type="phone" class="form-control" id="id_fone" name="fone" placeholder="fone" ng-model="fone" ng-required="true">
+				<input type="text" class="form-control" id="id_fone" name="fone" placeholder="fone" ng-model="fone" ng-required="true">
 			</div>
-
 			<div ng-show="criarForm.fone.$invalid && criarForm.email.$dirty" class="alert alert-danger">
 				<strong>Aviso!</strong> Por favor, preencha o campo fone
 			</div>

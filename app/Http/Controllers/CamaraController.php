@@ -21,6 +21,14 @@ class CamaraController extends Controller
      * @return \Illuminate\Http\Response
      */
   
+
+      public function inicio()
+    {
+        $vereadores = Vereador::all(); //Seleciona todods os vereadores
+        //return view('projeto.index', ['vereadores' => $vereadores]);
+        return view('index')->with('vereadores', $vereadores);
+
+    }
     public function cronometro()
     {
         $vereadores = Vereador::all(); //Seleciona todods os vereadores

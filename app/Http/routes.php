@@ -19,6 +19,7 @@ Route::get('/', function () {
 
 Route::group(['as' => 'group.', 'prefix' => 'inicio'], function () {
     Route::get('/', ['as' => 'index', 'uses' => 'CamaraController@index']);
+    Route::get('/inicio', ['as' => 'inicio', 'uses' => 'CamaraController@inicio']);
     Route::get('/crono', ['as' => 'cronometro', 'uses' => 'CamaraController@cronometro']);
     Route::get('/cria', ['as' => 'create', 'uses' => 'CamaraController@create']);
     Route::post('/salva', ['as' => 'store', 'uses' => 'CamaraController@store']);
@@ -36,9 +37,7 @@ Route::auth();
 
 Route::get('/home', 'HomeController@index');
 
-Route::get('/index', function () {
-    return view('index');
-});
+
 Route::get('/crono', function () {
     return view('projeto/cronometro');
 });
